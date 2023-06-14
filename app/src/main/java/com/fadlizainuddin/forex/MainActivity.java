@@ -19,7 +19,7 @@ import cz.msebera.android.httpclient.Header;
 public class MainActivity extends AppCompatActivity {
     private ProgressBar loadingProgressBar;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private TextView _idrTextView, _aedTextView, _afnTextView, _allTextView, _amdTextView, _angTextView, _aoaTextView, _arsTextView, _audTextView, _awgTextView, _aznTextView;
+    private TextView _usdTextView, _idrTextView, _aedTextView, _afnTextView, _allTextView, _amdTextView, _angTextView, _aoaTextView, _arsTextView, _audTextView, _awgTextView, _aznTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         _awgTextView = findViewById(R.id.awgTextView);
         _aznTextView = findViewById(R.id.aznTextView);
         _idrTextView = findViewById(R.id.idrTextView);
+        _usdTextView = findViewById(R.id.usdTextView);
         loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
         initSwipeRefreshLayout();
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 double aud = ratesModel.getIDR() / ratesModel.getAUD();
                 double awg = ratesModel.getIDR() / ratesModel.getAWG();
                 double azh = ratesModel.getIDR() / ratesModel.getAZN();
+                double usd = ratesModel.getIDR() / ratesModel.getUSD();
                 double idr = ratesModel.getIDR();
 
                 _aedTextView.setText(formatNumber(aed, "###,##0.##"));
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 _audTextView.setText(formatNumber(aud, "###,##0.##"));
                 _awgTextView.setText(formatNumber(awg, "###,##0.##"));
                 _aznTextView.setText(formatNumber(azh, "###,##0.##"));
+                _usdTextView.setText(formatNumber(usd, "###,##0.##"));
                 _idrTextView.setText(formatNumber(idr, "###,##0.##"));
 
                 loadingProgressBar.setVisibility(TextView.INVISIBLE);
@@ -93,11 +96,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+//  Fungsi ini berguna untuk apabila user swipe ke atas kemudian kana melakukan refresh
     private void initSwipeRefreshLayout() {
         swipeRefreshLayout.setOnRefreshListener(() -> {
             initForex();
 
-            swipeRefreshLayout.setRefreshing(false);
+            swipeRefreshLayout.setRefreshing(false); // Berguna untuk tampilan muter2 dari progressBar itu hilang
         });
     }
 

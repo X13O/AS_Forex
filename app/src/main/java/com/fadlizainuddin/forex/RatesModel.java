@@ -1,9 +1,18 @@
 package com.fadlizainuddin.forex;
 
 public class RatesModel {
-    private double AED, AFN, ALL, AMD, ANG, AOA, ARS, AUD, AWG, AZN, IDR;
+//  Nama variabel ini harus sama dengan data di GSON, karena tidak menggunakan @SerializedName
+    private double AED, AFN, ALL, AMD, ANG, AOA, ARS, AUD, AWG, AZN, IDR, USD;
 
     public RatesModel() {}
+
+    public double getUSD() {
+        return USD;
+    }
+
+    public void setUSD(double USD) {
+        this.USD = USD;
+    }
 
     public double getIDR() {
         return IDR;
